@@ -19,6 +19,11 @@
 session_start();
 include_once( 'core/global.inc.php' );
 
+// Instanciate, bootstrap and run new Application instance (Bacula-Web)
+$bwapp = new Application('application/config/bwapp.config.php');
+$bwapp->bootstrap();
+$bwapp->run();
+
 // Initialise view and model
 $view 	= new CView();
 $dbSql 	= null;
