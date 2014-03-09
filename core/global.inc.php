@@ -30,6 +30,7 @@
  // Views path
  define('BW_ROOT', getcwd());
  define('VIEW_DIR', BW_ROOT . "/application/view/");
+ define('TEMPLATES_DIR', VIEW_DIR . '/templates/');
  define('VIEW_CACHE_DIR', "application/view/cache");
  
  // Configuration

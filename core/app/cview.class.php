@@ -27,8 +27,8 @@ class CView extends Smarty {
         $this->debugging = false;
         $this->force_compile = true;
 
-        $this->template_dir = VIEW_DIR;
-        $this->compile_dir = VIEW_CACHE_DIR;
+        $this->template_dir = TEMPLATES_DIR;
+        $this->compile_dir  = VIEW_CACHE_DIR;
     }
 
     public function render($view = 'index.tpl') {
