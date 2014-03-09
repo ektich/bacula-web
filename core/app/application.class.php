@@ -28,9 +28,7 @@ class Application {
         
         try {
             // Check config file exist and is readable
-            FileConfig::open( CONFIG_FILE );
-
-            if( !is_readable($this->user_config))
+            if( !FileConfig::open( CONFIG_FILE ) )
                 throw new Exception("The configuration file is missing or not readable");
                 
             // Check template cache is writable by Apache
