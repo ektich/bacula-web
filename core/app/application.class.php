@@ -1,12 +1,13 @@
 <?php
 
 class Application {
-    private $name;
+    public $name;
+    public $version;
+    public $author;
+    public $website;
+	
     private $language;
-    private $version;
     private $user_config;
-    private $author;
-    private $website;
     
     private $db_adapter;
     private $controller;
@@ -43,7 +44,7 @@ class Application {
 				throw new Exception("Language configuration problem");
 			
 			// Check if at least one catalog is defined
-			if( count(FileConfig::get_Catalogs()) == 0) {
+			if( FileConfig::count_Catalogs() == 0) {
 				throw new Exception("Please define at least on Bacula director connection");
 			}
             
