@@ -20,7 +20,7 @@
 
 	class Bweb
 	{
-		public	$translate;		// Translation class instance
+		public $translate;		// Translation class instance
 		private $catalogs = array();	// Catalog array
 		
 		private $view;			// Template class
@@ -33,32 +33,16 @@
 
 		function __construct( &$view )
 		{             
-			// Loading configuration file parameters
-			try {
-				if( !FileConfig::open( CONFIG_FILE ) )
-					throw new Exception("The configuration file is missing");
-				else {
-					$this->catalog_nb = FileConfig::count_Catalogs();
-				}
-			}catch( Exception $e ) {
-				CErrorHandler::displayError($e);
-			}
-				
 			// Template engine initalization
 			$this->view = $view;
 			
-			// Checking template cache permissions
-			if( !is_writable( VIEW_CACHE_DIR ) )
-				throw new Exception("The template cache folder <b>" . VIEW_CACHE_DIR . "</b> must be writable by Apache user");
-				
 			// Initialize smarty gettext function
-			$language = FileConfig::get_Value( 'language' );
-			if( !$language )
-				throw new Exception("Language translation problem");
+			$language = FileConfig::get_Value('language');
 				
 			$this->translate = new CTranslation( $language );
 			$this->translate->set_Language( $this->view );
 			
+			// Hey !!! Code below is the job of the controller ...
 			// Check catalog id
 			if( !is_null(CHttpRequest::get_Value('catalog_id') ) ) {
 				$this->catalog_current_id = CHttpRequest::get_Value('catalog_id');
@@ -115,7 +99,7 @@
 		// ==================================================================================
 		// Function: 	GetVolumeList()
 		// Parameters: 	none
-		// Return:	array of volumes ordered by poolid and volume name
+		// Return:		array of volumes ordered by poolid and volume name
 		// ==================================================================================
 		
 		public function GetVolumeList() 
