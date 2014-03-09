@@ -48,15 +48,12 @@
 		// Check if config file exist and is readable, then include it
 		if ( is_readable( self::$config_file ) ) {
 			require_once( self::$config_file );
-			//echo 'configuration file <b>' . self::$config_file . '</b> succesfully loaded <br />';
 			self::$config = $config;
 			return true;
 		}else {
-			throw new Exception("Config file not found or bad file permissions");
-			return false;
+		 return false;
 		}
 	 } // end function open()
-   
  }
 
 ?>
