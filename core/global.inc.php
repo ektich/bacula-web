@@ -20,9 +20,10 @@
  ClassAutoLoader::init();
  
  // Add root path and exclusions
+ ClassAutoLoader::add_Exclusion('core/external/smarty-gettext');
+ ClassAutoLoader::add_Exclusion('core/external/bootstrap');
  ClassAutoLoader::add_Path('core');
  ClassAutoLoader::add_Path('application');
- ClassAutoLoader::add_Exclusion('core/external/smarty-gettext');
  
  // Get all $_POST and $_GET values
  CHttpRequest::get_Vars();
