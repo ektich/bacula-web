@@ -56,9 +56,12 @@ class ClassAutoLoader {
   // ==================================================================================
 
   public function add_Path($pathname) {
-    // Scan and add all subfolders
-    if( file_exists( $pathname ) )
-        self::$paths = array_merge(self::$paths, self::scan_Path( $pathname ) );    
+    // Scan and add each paths subfolders
+    $current_path = getcwd() . '/' . $pathname;
+	
+	if( file_exists( $current_path ) ) {
+		self::$paths = array_merge(self::$paths, self::scan_Path( $current_path ) );    
+	}
   }
   
   // ==================================================================================
@@ -68,7 +71,7 @@ class ClassAutoLoader {
   // ==================================================================================
 
   public function add_Exclusion($path) {
-    self::$exclusion[] = $path;
+    self::$exclusion[] = getcwd() . '/' . $path;
   }
   
   // ==================================================================================
@@ -82,12 +85,12 @@ class ClassAutoLoader {
     $cf[] = $path;
     
     foreach( glob($path.'/*', GLOB_ONLYDIR) as $dir) {
-      foreach(self::scan_Path($dir) as $sf ) {
-        if( !in_array($sf, self::$exclusion) )
-            $cf[] = $sf;
-      }
+		foreach(self::scan_Path($dir) as $sf ) {
+			if( !in_array($sf, self::$exclusion) )
+				$cf[] = $sf;
+		}
     }
-    return $cf;
+	return $cf;
   }
 
   // ==================================================================================
@@ -99,7 +102,7 @@ class ClassAutoLoader {
   private function Load_Class($classname) {
     foreach( self::$paths as $dir ) {      
       $file_full_path = $dir . '/' . $classname . '.class.php';
-    
+	  
       if( file_exists( $file_full_path ) )
         include( $file_full_path );
         
@@ -126,3 +129,4 @@ class ClassAutoLoader {
   }
 
 } // end class ClassAutoLoader
+?>
