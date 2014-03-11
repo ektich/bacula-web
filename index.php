@@ -25,7 +25,7 @@ $bwapp->bootstrap();
 $bwapp->run();
 
 // Initialise view and model
-$view 	= new CView();
+$view 	= new View();
 $dbSql 	= null;
 
 try {
