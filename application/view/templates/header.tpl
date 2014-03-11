@@ -3,9 +3,16 @@
 <html lang="en">
 <head>
 <title>Bacula-Web - {$page_name}</title>
+<!--
 <link rel="stylesheet" type="text/css" href="application/view/style/default.css">
 <link rel="stylesheet" type="text/css" href="application/view/style/header.css">
 <link rel="stylesheet" type="text/css" href="application/view/style/table.css">
+-->
+
+<!-- Bootstrap front-end framework -->
+<link rel="stylesheet" type="text/css" href="core/external/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="core/external/bootstrap/css/bootstrap-theme.min.css">
+
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
 </head>
 <body>
