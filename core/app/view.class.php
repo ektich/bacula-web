@@ -16,7 +16,7 @@
   +-------------------------------------------------------------------------+
  */
 
-class CView extends Smarty {
+class View extends Smarty {
 
     public function __construct() {
         $this->init();
