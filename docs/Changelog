@@ -7,6 +7,7 @@ Changelog
 Fixed bugs / New features
 
 - 0000121 - Job log not using <br> for EOL
+- 0000124 - PHP class autoloader do not work when Bacula-Web not under Apache root folder 
 
 === Release 6.0.0 (November 11th 2013) ===
 
