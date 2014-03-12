@@ -19,7 +19,7 @@
 
  try{
     // Initialise view and model
-    $view = new CView();
+    $view = new View();
     $dbSql = new Bweb($view);
     
     $backupjob_name = "";

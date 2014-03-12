@@ -18,7 +18,7 @@
 session_start();
 include_once( 'core/global.inc.php' );
 
-$view 		= new CView();
+$view 		= new View();
 $dbSql 		= new Bweb($view);
 $joblogs 	= array();
 

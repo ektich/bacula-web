@@ -22,7 +22,7 @@ require_once ("core/global.inc.php");
 
 // Initialise model and view
 $dbSql = null;
-$view = new CView();
+$view = new View();
 
 try {
     $dbSql = new Bweb($view);

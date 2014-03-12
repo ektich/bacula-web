@@ -20,7 +20,7 @@
  include_once( 'core/global.inc.php' );
 
  // Initialise view and model
- $view = new CView();
+ $view = new View();
  $dbSql = new Bweb($view);
 
  // Get volumes list (pools.tpl)
