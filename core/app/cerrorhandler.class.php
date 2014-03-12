@@ -26,11 +26,7 @@ class CErrorHandler {
     }
 
     public static function displayError($exception) {
-/*		
-		echo '<pre>';
-		var_dump( $exception->getTrace() );
-		echo '</pre>';
-*/		
+	
 		switch (get_class($exception)) {
             case 'PDOException':
                 self::setHeader('Database error');
@@ -40,9 +36,7 @@ class CErrorHandler {
                 self::setHeader('Application error');
                 break;
         } // end switch
-	 	$output = '';	
-		// Display Exception trace
-		$output .= self::getFormatedTrace($exception);
+	 	$output = '<div class="alert alert-info">' . self::getFormatedTrace($exception) . '</div>';
 		
 		// Header
 		$output .= '<table style="margin: 10px; width: 900px; border: 1px solid #c0c0c0;">';
@@ -65,7 +59,6 @@ class CErrorHandler {
 		$output .= "</table>";
 		
 		echo $output;
-        //die();
     } // end function displayError
 	
 	public static function getFormatedTrace( $e ) {
