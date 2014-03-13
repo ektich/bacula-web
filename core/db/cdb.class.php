@@ -16,59 +16,74 @@
   +-------------------------------------------------------------------------+
  */
 
-class CDB {
-    private static $connection;
-    private $options;
-    private $result;
+class DatabaseAdapter {
 
-	// ==================================================================================
-	// Function: 	__construct()
-	// Parameters: 	none
-	// Return:		none
-	// ==================================================================================
-	
-    private function __construct() {
+    private $link;
+
+    private $dsn;
+    private $username
+    private $password;
+    
+    private $options;
+
+    // ==================================================================================
+    // Function: 	__construct()
+    // Parameters: 	none
+    // Return:		none
+    // ==================================================================================
+    
+    private function __construct( $connection = array() ) {
+        $this->options  = $connection['options'];
+        $this->dsn      = $connection['dsn'];
+
+        if( $connection['driver'] != 'sqlite' ) {
+          $this->username = $connection['username'];
+          $this->password = $connection['password'];
+          $this->connection = new PDO{$this->dsn, $this->username, $this->password}
+        }else {
+            $this->connection = new PDO($this->dsn)
+        }
     }
 
-	// ==================================================================================
-	// Function: 	connect()
-	// Parameters: 	none
-	// Return:		valid PDO connection
-	// ==================================================================================
-	
-	public static function connect( $dsn, $user = null, $password = null, $options = array() ) {
+    // ==================================================================================
+    // Function: 	connect()
+    // Parameters: 	none
+    // Return:		valid PDO connection
+    // ==================================================================================
+    
+    public static function connect( $dsn, $user = null, $password = null ) {
 
-		try {
+        try {
             if ( is_null( self::$connection ) ) {
-				self::$connection = new PDO($dsn, $user, $password);
-			}
+                self::$connection = new PDO($dsn, $user, $password);
+            }
         }catch (PDOException $e) {
             CErrorHandler::displayError($e);
         }
-		
-		return self::$connection;
+        
+        return self::$connection;
     }
 
-	// ==================================================================================
-	// Function: 	getDriverName()
-	// Parameters: 	none
-	// Return:		driver name (eg: mysql, pgsql, sqlite, etc.)
-	// ==================================================================================
-	
+    // ==================================================================================
+    // Function: 	getDriverName()
+    // Parameters: 	none
+    // Return:		driver name (eg: mysql, pgsql, sqlite, etc.)
+    // ==================================================================================
+    
     public static function getDriverName() {
-		return self::$connection->getAttribute( PDO::ATTR_DRIVER_NAME );
+        return self::$connection->getAttribute( PDO::ATTR_DRIVER_NAME );
     }
 
-	// ==================================================================================
-	// Function: 	getServerVersion()
-	// Parameters: 	none
-	// Return:		database server version
-	// ==================================================================================
-	
+    // ==================================================================================
+    // Function: 	getServerVersion()
+    // Parameters: 	none
+    // Return:		database server version
+    // ==================================================================================
+    
     public static function getServerVersion() {
-		$server_version = self::$connection->getAttribute( PDO::ATTR_SERVER_VERSION );
-		$server_version = explode(':', $server_version);
-		return $server_version[0];
+        $server_version = self::$connection->getAttribute( PDO::ATTR_SERVER_VERSION );
+        $server_version = explode(':', $server_version);
+        return $server_version[0];
     }
 }
 ?>
