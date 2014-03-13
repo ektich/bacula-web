@@ -18,10 +18,10 @@
 
 class DatabaseAdapter {
 
-    private $link;
+    private $connection;
 
     private $dsn;
-    private $username
+    private $username;
     private $password;
     
     private $options;
@@ -32,16 +32,20 @@ class DatabaseAdapter {
     // Return:		none
     // ==================================================================================
     
-    private function __construct( $connection = array() ) {
-        $this->options  = $connection['options'];
-        $this->dsn      = $connection['dsn'];
+    public function __construct( $db_config = array(), $db_options = array() ) {
+        $this->dsn      = $db_config['dsn'];
+        $this->options  = $db_options;
 
-        if( $connection['driver'] != 'sqlite' ) {
-          $this->username = $connection['username'];
-          $this->password = $connection['password'];
-          $this->connection = new PDO{$this->dsn, $this->username, $this->password}
+        try{
+        if( $db_config['driver'] != 'sqlite' ) {
+          $this->username   = $db_config['username'];
+          $this->password   = $db_config['password'];
+          $this->connection = new PDO($this->dsn, $this->username, $this->password);
         }else {
-            $this->connection = new PDO($this->dsn)
+            $this->connection = new PDO($this->dsn);
+        }
+        }catch(PDOException $e)
+            CErrorHandler::displayError($e);
         }
     }
 
