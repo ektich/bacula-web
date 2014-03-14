@@ -33,6 +33,7 @@ class ClassAutoLoader {
     
     spl_autoload_register( array($this,'Load_Class'), true );
     spl_autoload_register( array($this,'Load_Models'), true );
+    spl_autoload_register( array($this,'Load_Views'), true );
   }
 
   // ==================================================================================
@@ -126,6 +127,24 @@ class ClassAutoLoader {
       if( file_exists( $file_full_path ) )
         include( $file_full_path );
     }    
+  }
+
+  // ==================================================================================
+  // Function:      Load_Views()
+  // Parameters:    $classname
+  // Return:
+  // ==================================================================================
+
+  public function Load_Views( $classname ) {
+    foreach( self::$paths as $dir ) {
+      list($class) = explode('_', $classname);
+      $file_full_path = $dir . '/' . $class . '.view.php';
+      $file_full_path = str_replace("View", "", $file_full_path);
+      $file_full_path = strtolower($file_full_path);
+
+      if( file_exists( $file_full_path ) )
+        include( $file_full_path );
+    }
   }
 
 } // end class ClassAutoLoader
