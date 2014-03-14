@@ -23,8 +23,6 @@ class Application {
     }
     
     public function bootstrap() {
-        echo '<h3>Testing App requirements ... </h3>';
-        
         try {
             // Check config file exist and is readable
             if( !FileConfig::open( CONFIG_FILE ) )
@@ -75,23 +73,12 @@ class Application {
     }
     
     public function run() {
-        /*
-        echo '<h3>Application '.$this->name.' version '.$this->version;
-        echo '(author '.$this->author.')';
-        echo ' successfully started</h3><br />';
-        echo '<a target="_blank" href="'.$this->website.'">Web site</a>';
-        */
-        
         /* TO DO
          * Simplify File and FileConfig classes (merge if necessary)
          * Modify CException::raiseErrors (should not die, use template in test page)
          * USER $SESSION $GET $POST should be manager by one object, remove redundancy in all the code
         */
-        
-        
         try {
-            echo "<h3>Ready to run the app ... </h3>";
-
             $view = new DashboardView();
             $view->render();
 
