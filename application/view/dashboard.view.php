@@ -28,6 +28,7 @@
  
     public function render() 
     {
+        $this->assign('page_name', $this->title );
         $this->display( $this->template_file );
     }
  }
