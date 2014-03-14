@@ -79,7 +79,9 @@ class Application {
          * USER $SESSION $GET $POST should be manager by one object, remove redundancy in all the code
         */
         try {
-            $view = new DashboardView();
+            $controller = new Controller();
+            $viewname   = $controller->getView();
+            $view       = new $viewname();
             $view->render();
 
         }catch (Exception $e) {
