@@ -23,7 +23,7 @@ class Application {
     }
     
     public function bootstrap() {
-        echo '<h3>Testing App requierments ... </h3>';
+        echo '<h3>Testing App requirements ... </h3>';
         
         try {
             // Check config file exist and is readable
@@ -55,6 +55,19 @@ class Application {
                $this->catalog_current_id = 0;
                $_SESSION['catalog_id'] = $this->catalog_current_id;
            }
+           
+            // Template engine initalization
+
+            // Bacula catalog selection
+            $catalog_nb = FileConfig::count_Catalogs();
+            if( $catalog_nb > 1 ) {
+                // Catalogs list
+                $this->view->assign('catalogs', FileConfig::get_Catalogs() );
+                // Catalogs count
+                $this->view->assign('catalog_nb', $catalog_nb );
+            }
+            
+
         }catch( Exception $e ) {
             CErrorHandler::displayError($e);
         }
@@ -78,6 +91,10 @@ class Application {
         
         try {
             echo "<h3>Ready to run the app ... </h3>";
+
+            $view = new DashboardView();
+            $view->render();
+
         }catch (Exception $e) {
             CErrorHandler::displayError($e);
         }
