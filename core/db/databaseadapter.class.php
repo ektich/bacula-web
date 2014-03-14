@@ -18,7 +18,8 @@
 
 class DatabaseAdapter {
 
-    private $connection;
+    public  $db_link;
+    private $db_driver;
 
     private $dsn;
     private $username;
@@ -32,40 +33,35 @@ class DatabaseAdapter {
     // Return:		none
     // ==================================================================================
     
-    public function __construct( $db_config = array(), $db_options = array() ) {
-        $this->dsn      = $db_config['dsn'];
-        $this->options  = $db_options;
+    public function __construct() 
+    { 
+            global $bwapp;
 
-        try{
-        if( $db_config['driver'] != 'sqlite' ) {
-          $this->username   = $db_config['username'];
-          $this->password   = $db_config['password'];
-          $this->connection = new PDO($this->dsn, $this->username, $this->password);
-        }else {
-            $this->connection = new PDO($this->dsn);
-        }
-        }catch(PDOException $e)
-            CErrorHandler::displayError($e);
-        }
-    }
+            // Prepare database connection parameters
+            $this->dsn    = FileConfig::get_DataSourceName( $bwapp->catalog_current_id );
 
-    // ==================================================================================
-    // Function: 	connect()
-    // Parameters: 	none
-    // Return:		valid PDO connection
-    // ==================================================================================
-    
-    public static function connect( $dsn, $user = null, $password = null ) {
+            // Getting driver name from PDO connection
+            $this->db_driver     = FileConfig::get_Value( 'db_type', $bwapp->catalog_current_id);
 
-        try {
-            if ( is_null( self::$connection ) ) {
-                self::$connection = new PDO($dsn, $user, $password);
+            // Set database options
+            $db_options = array( PDO::ATTR_CASE => PDO::CASE_LOWER,
+                                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                                 PDO::ATTR_STATEMENT_CLASS => array('CDBResult', array($this)) );
+
+            // MySQL connection specific parameter
+            if ($this->db_driver == 'mysql')
+                $db_options[] = array(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true);
+
+            // Define username and password for MySQL and postgreSQL
+            if( FileConfig::get_Value( 'db_type', $bwapp->catalog_current_id) != 'sqlite' ) {
+                $this->username = FileConfig::get_Value( 'login', $bwapp->catalog_current_id);
+                $this->password = FileConfig::get_Value( 'password', $bwapp->catalog_current_id);
+
+                // Create PDO database connection
+		$this->db_link = new PDO($this->dsn, $this->username, $this->password);
+            }else {
+                $this->db_link = new PDO($this->dsn);
             }
-        }catch (PDOException $e) {
-            CErrorHandler::displayError($e);
-        }
-        
-        return self::$connection;
     }
 
     // ==================================================================================
@@ -74,8 +70,8 @@ class DatabaseAdapter {
     // Return:		driver name (eg: mysql, pgsql, sqlite, etc.)
     // ==================================================================================
     
-    public static function getDriverName() {
-        return self::$connection->getAttribute( PDO::ATTR_DRIVER_NAME );
+    public function getDriverName() {
+        return $this->db_link->getAttribute( PDO::ATTR_DRIVER_NAME );
     }
 
     // ==================================================================================

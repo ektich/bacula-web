@@ -88,11 +88,11 @@
 	// Parameters:	$period array containing start and end timestamp
 	// Return:		return table with correct case
 	// ==================================================================================
-	public static function get_Timestamp_Interval( $pdo_connection, $period_timestamp = array() ) {
+	public static function get_Timestamp_Interval( $dbadapter, $period_timestamp = array() ) {
 
 		$periods = array();
 		
-		switch( CDB::getDriverName() ) {
+		switch( $dbadapter->getDriverName() ) {
 			case 'pgsql':
 				$periods['starttime'] 	= "TIMESTAMP '" . date( "Y-m-d H:i:s", $period_timestamp[0]) . "'";
 				$periods['endtime'] 	= "TIMESTAMP '" . date( "Y-m-d H:i:s", $period_timestamp[1]) . "'";
