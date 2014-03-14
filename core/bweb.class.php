@@ -32,29 +32,18 @@
 		public	$catalog_current_id;	// Current catalog
 
 		function __construct( &$view )
-		{             
-			// Template engine initalization
-			$this->view = $view;
+		{       
+                    global $bwapp;      
+		    // Template engine initalization
+		    $this->view = $view;
 			
-			// Initialize smarty gettext function
-			$language = FileConfig::get_Value('language');
+		    // Initialize smarty gettext function
+		    $language = FileConfig::get_Value('language');
 				
-			$this->translate = new CTranslation( $language );
-			$this->translate->set_Language( $this->view );
+		    $this->translate = new CTranslation( $language );
+		    $this->translate->set_Language( $this->view );
 			
-			// Hey !!! Code below is the job of the controller ...
-			// Check catalog id
-			if( !is_null(CHttpRequest::get_Value('catalog_id') ) ) {
-				$this->catalog_current_id = CHttpRequest::get_Value('catalog_id');
-				$_SESSION['catalog_id'] = $this->catalog_current_id;
-			}elseif( isset( $_SESSION['catalog_id'] ) )
-				$this->catalog_current_id = $_SESSION['catalog_id'];
-			else {
-				$this->catalog_current_id = 0;
-				$_SESSION['catalog_id'] = $this->catalog_current_id;
-			}
-
-			$this->view->assign( 'catalog_current_id', $this->catalog_current_id );
+		    $this->view->assign( 'catalog_current_id', $bwapp->catalog_current_id );
 	    
             // Bacula catalog selection		
 	    if( $this->catalog_nb > 1 ) {

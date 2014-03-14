@@ -8,10 +8,9 @@ class Application {
 	
     private $language;
     private $user_config;
-    
-    private $db_adapter;
-    private $controller;
 
+    public  $catalog_current_id;
+    
     public function __construct($app_config_file) {
         require_once( $app_config_file);
         
@@ -39,13 +38,23 @@ class Application {
             $this->language = FileConfig::get_Value( 'language' );
 			
             if( !$this->language )
-				throw new Exception("Language configuration problem");
+		throw new Exception("Language configuration problem");
 			
-			// Check if at least one catalog is defined
-			if( FileConfig::count_Catalogs() == 0) {
-				throw new Exception("Please define at least on Bacula director connection");
-			}
-            
+            // Check if at least one catalog is defined
+	    if( FileConfig::count_Catalogs() == 0) {
+                throw new Exception("Please define at least on Bacula director connection");
+	    }
+
+            // Get current catalog id
+           if( !is_null(CHttpRequest::get_Value('catalog_id') ) ) {
+               $this->catalog_current_id = CHttpRequest::get_Value('catalog_id');
+               $_SESSION['catalog_id'] = $this->catalog_current_id;
+           }elseif( isset( $_SESSION['catalog_id'] ) )
+               $this->catalog_current_id = $_SESSION['catalog_id'];
+           else {
+               $this->catalog_current_id = 0;
+               $_SESSION['catalog_id'] = $this->catalog_current_id;
+           }
         }catch( Exception $e ) {
             CErrorHandler::displayError($e);
         }
