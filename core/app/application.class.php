@@ -73,11 +73,6 @@ class Application {
     }
     
     public function run() {
-        /* TO DO
-         * Simplify File and FileConfig classes (merge if necessary)
-         * Modify CException::raiseErrors (should not die, use template in test page)
-         * USER $SESSION $GET $POST should be manager by one object, remove redundancy in all the code
-        */
         try {
             $controller = new Controller();
             $viewname   = $controller->getView();
