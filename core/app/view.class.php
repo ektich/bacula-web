@@ -25,8 +25,6 @@ class View extends Smarty {
     }
 
     protected function init() {
-        global $bwapp;
-
         $this->compile_check = true;
         $this->debugging = false;
         $this->force_compile = true;
