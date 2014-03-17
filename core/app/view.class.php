@@ -17,11 +17,15 @@
  */
 
 class View extends Smarty {
+    public $title;
+    protected $template_file;
+
     private $language;
     private $charset;
     private $domaine;   
-
+    
     public function __construct() {
+        $this->init();
     }
 
     protected function init() {
@@ -46,8 +50,11 @@ class View extends Smarty {
         textdomain($this->domaine);
     }
 
-    public function render($view = 'index.tpl') {
-        $this->display($view);
+    public function render() {
+        // Set page title
+        $this->assign('page_name', $this->title );
+        // Render the view 
+        $this->display($this->template_file);
     }
 }
 ?>

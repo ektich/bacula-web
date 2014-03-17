@@ -17,18 +17,11 @@
 */
  class DashboardView extends View
  {
-    public $title;
+    public $title		= 'Dashboard';
+    protected $template_file    = 'dashboard.tpl';
     
-    public function __construct()
-    {
-        parent::init();
-        $this->title         = 'Dashboard';
-        $this->template_file = 'dashboard.tpl';
-    }
- 
     public function render() 
     {
-        $this->assign('page_name', $this->title );
-        $this->display( $this->template_file );
+        parent::render();
     }
  }
