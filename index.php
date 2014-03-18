@@ -20,10 +20,10 @@ session_start();
 include_once( 'core/global.inc.php' );
 
 // Instanciate, bootstrap and run new Application instance (Bacula-Web)
-$bwapp = new Application('application/config/bwapp.config.php');
+$bwapp = new BwApplication('application/config/bwapp.config.php');
 $bwapp->bootstrap();
 $bwapp->run();
-
+/*
 // Initialise view and model
 $view 	= new View();
 $dbSql 	= null;
@@ -256,4 +256,5 @@ if( isset($_POST['period_selector']) and !is_null($_POST['period_selector']) ) {
  
  // Render template
  $view->render('index.tpl');
+*/
 ?>
