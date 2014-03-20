@@ -11,6 +11,8 @@ class Application {
 
     protected $default_controller;
     protected $default_view;
+    
+    protected $exception;
 
     public function __construct($app_config_file) {
         require_once( $app_config_file);
@@ -38,14 +40,26 @@ class Application {
             }
 
         // Check if context controller exist
+        try {
         if( !class_exists( $controller_class_name) )
             throw new Exception( "Page not found" );
        
+        // In case an exception is thrown ...
+        }catch( Exception $e) {
+             $this->exception       = $e;
+             $controller_class_name = 'Exception_Controller'; 
+             $view_class_name       = 'Exception_View';
+        }
+
         $controller = new $controller_class_name();
         $view       = new $view_class_name();
 
         // if no action defined in url
-        $view->index();
+        if( !is_null($this->exception) )
+           $view->index( $this->exception );
+        else
+           $view->index();
+
         $view->render();
     }
     
