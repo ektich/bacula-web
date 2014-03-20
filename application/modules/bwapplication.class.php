@@ -1,11 +1,15 @@
 <?php
 
 class BwApplication extends Application {
-    public  $catalog_current_id;
-    private $user_config = CONFIG_FILE;
+    private $catalog_current_id;
+    private $user_config         = CONFIG_FILE;
     
     public function bootstrap() {
         try {
+	    // Set default controller
+            $this->default_controller = 'Dashboard';
+            $this->default_view       = 'Dashboard';
+
             // Check config file exist and is readable
             if( !FileConfig::open( CONFIG_FILE ) )
                 throw new Exception("The configuration file is missing or not readable");
