@@ -70,11 +70,11 @@ class ClassAutoLoader {
     } // end else
 
     foreach( $this->paths as $path ) {
-        $fullpath = $this->current_path . '/' . $path . '/';
+        $fullpath = $this->current_path . '/' . $path;
 
-        if( file_exists( $fullpath . '/' . $classfile ) )
-            echo "Match !!!";
+        if( file_exists( $fullpath . '/' . $classfile ) ) {
             include( $fullpath . '/' . $classfile );
+        } // enf if
     } // end foreach
   }
   
