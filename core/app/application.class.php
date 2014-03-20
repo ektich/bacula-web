@@ -22,15 +22,31 @@ class Application {
     }
     
     public function run() {
-        try {
-            $controller = new Controller();
-            $viewname   = $controller->getView();
-            $view       = new $viewname();
-            $view->render();
+            $router  = new RouterController();
+            $context = $router->getContext();
 
-        }catch (Exception $e) {
-            CErrorHandler::displayError($e);
-        }
+            $controller_class_name = null;
+            $view_class_name       = null;
+
+            // debug
+            if( !is_null($context) ) {
+                $controller_class_name = ucfirst($context) . '_Controller';
+                $view_class_name       = ucfirst($context) . '_View';
+            }else {
+                $controller_class_name = $this->default_controller . '_Controller';
+                $view_class_name       = $this->default_view . '_View';
+            }
+
+        // Check if context controller exist
+        if( !class_exists( $controller_class_name) )
+            throw new Exception( "Page not found" );
+       
+        $controller = new $controller_class_name();
+        $view       = new $view_class_name();
+
+        // if no action defined in url
+        $view->index();
+        $view->render();
     }
     
     public function getName() {
