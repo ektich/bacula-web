@@ -15,10 +15,14 @@
   | GNU General Public License for more details.                            |
   +-------------------------------------------------------------------------+
 */
- class DashboardView extends View
+ class Dashboard_View extends View
  {
     public $title		= 'Dashboard';
     protected $template_file    = 'dashboard.tpl';
+
+    public function index( $action = null) {
+        // to be completed
+    }
     
     public function render() 
     {
