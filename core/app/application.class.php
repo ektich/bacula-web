@@ -9,6 +9,9 @@ class Application {
     private $language;
     private $user_config;
 
+    protected $default_controller;
+    protected $default_view;
+
     public function __construct($app_config_file) {
         require_once( $app_config_file);
         
