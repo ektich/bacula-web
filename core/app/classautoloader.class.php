@@ -54,11 +54,12 @@ class ClassAutoLoader {
 
     $fullpath  = '';
     $classfile = '';
-    list($baseclass, $classtype) = explode( '_', $classname);
+    
+    if( strpos( $classname, '_' ) === false ) {
+        $classfile = strtolower($classname) . '.class.php';
+    }else { 
+        list($baseclass, $classtype) = explode( '_', $classname);
 
-    if( empty($classtype) ) {
-        $classfile = strtolower($baseclass) . '.class.php';
-    }else {
         switch($classtype) {
           case 'Controller':
           case 'View':
