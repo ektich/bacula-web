@@ -25,9 +25,9 @@
  
  // Views path
  define('BW_ROOT', getcwd());
- define('VIEW_DIR', BW_ROOT . "/application/view/");
+ define('VIEW_DIR', BW_ROOT . "/application/views/");
  define('TEMPLATES_DIR', VIEW_DIR . '/templates/');
- define('VIEW_CACHE_DIR', "application/view/cache");
+ define('VIEW_CACHE_DIR', "application/views/cache");
  
  // Configuration
  define('CONFIG_DIR', BW_ROOT . "/application/config/");
@@ -37,6 +37,7 @@
  define('LOCALE_DIR', BW_ROOT . '/application/locale');
  
  // Smarty
+ require_once(BW_ROOT . '/core/external/smarty/libs/Smarty.class.php');
  require_once(BW_ROOT . '/core/external/smarty-gettext/smarty-gettext.php');
  
  // PHPLot
