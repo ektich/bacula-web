@@ -16,10 +16,8 @@
  */
 
 class ClassAutoLoader {
-
-  public static $loader;
-  private static $paths;
-  private static $exclusion;
+  private $paths;
+  private $current_path;
 
   // ==================================================================================
   // Function: 	    __construct()
@@ -28,88 +26,56 @@ class ClassAutoLoader {
   // ==================================================================================
 
   public function __construct() {
-    self::$paths     = array();
-    self::$exclusion = array();
-    
-    spl_autoload_register( array($this,'Load_Class'), true );
-    spl_autoload_register( array($this,'Load_Models'), true );
-    spl_autoload_register( array($this,'Load_Views'), true );
+
+    $this->current_path = getcwd();
+
+    $this->paths = array( 'application/models', 
+                          'application/controllers', 
+                          'application/views', 
+                          'application/modules',
+                          'core', 
+                          'core/app',
+                          'core/db',
+                          'core/graph',
+                          'core/utils',
+                           );
+
+    // Register autoload function 
+    spl_autoload_register( array($this,'loadClass'), true ); 
   }
 
   // ==================================================================================
-  // Function: 	    init()
-  // Parameters:    none
-  // Return:	    ClassAutoLoader object
-  // ==================================================================================
-
-  public static function init()
-  {
-    if( self::$loader == NULL )
-      self::$loader = new self();
-
-    return self::$loader;
-  }    
-
-  // ==================================================================================
-  // Function: 	    add_Path()
-  // Parameters:    $pathname
-  // Return:	    
-  // ==================================================================================
-
-  public function add_Path($pathname) {
-    // Scan and add each paths subfolders
-    $current_path = getcwd() . '/' . $pathname;
-	
-	if( file_exists( $current_path ) ) {
-		self::$paths = array_merge(self::$paths, self::scan_Path( $current_path ) );    
-	}
-  }
-  
-  // ==================================================================================
-  // Function: 	    add_Exclusion()
-  // Parameters:    $path
-  // Return:	    
-  // ==================================================================================
-
-  public function add_Exclusion($path) {
-    self::$exclusion[] = getcwd() . '/' . $path;
-  }
-  
-  // ==================================================================================
-  // Function: 	    Scan_Path()
-  // Parameters:    $path
-  // Return:	    array with containing folder and subfolder(s)
-  // ==================================================================================
-
-  public function scan_Path( $path ) {
-    $cf   = null;
-    $cf[] = $path;
-    
-    foreach( glob($path.'/*', GLOB_ONLYDIR) as $dir) {
-		foreach(self::scan_Path($dir) as $sf ) {
-			if( !in_array($sf, self::$exclusion) )
-				$cf[] = $sf;
-		}
-    }
-	return $cf;
-  }
-
-  // ==================================================================================
-  // Function: 	    Load_Class()
+  // Function: 	    loadClass()
   // Parameters:    $classname
   // Return:	    
   // ==================================================================================
   
-  private function Load_Class($classname) {
-    foreach( self::$paths as $dir ) {      
-      $file_full_path = $dir . '/' . $classname . '.class.php';
-	  
-      if( file_exists( $file_full_path ) )
-        include( $file_full_path );
-        
-      if( file_exists( strtolower($file_full_path) ) )
-        include( strtolower($file_full_path) );
-    }
+  private function loadClass($classname) {
+
+    $fullpath  = '';
+    $classfile = '';
+    list($baseclass, $classtype) = explode( '_', $classname);
+
+    if( empty($classtype) ) {
+        $classfile = strtolower($baseclass) . '.class.php';
+    }else {
+        switch($classtype) {
+          case 'Controller':
+          case 'View':
+          case 'Model':
+              $classfile = $baseclass . '.' . $classtype . '.php';
+              $classfile = strtolower($classfile);
+          break;
+        } // end switch
+    } // end else
+
+    foreach( $this->paths as $path ) {
+        $fullpath = $this->current_path . '/' . $path . '/';
+
+        if( file_exists( $fullpath . '/' . $classfile ) )
+            echo "Match !!!";
+            include( $fullpath . '/' . $classfile );
+    } // end foreach
   }
   
   // ==================================================================================
@@ -123,7 +89,7 @@ class ClassAutoLoader {
       list($class) = explode('_', $classname);
       $file_full_path = $dir . '/' . $class . '.model.php';
       $file_full_path = strtolower($file_full_path);
-            
+     
       if( file_exists( $file_full_path ) )
         include( $file_full_path );
     }    
@@ -140,6 +106,24 @@ class ClassAutoLoader {
       list($class) = explode('_', $classname);
       $file_full_path = $dir . '/' . $class . '.view.php';
       $file_full_path = str_replace("View", "", $file_full_path);
+      $file_full_path = strtolower($file_full_path);
+
+      if( file_exists( $file_full_path ) )
+        include( $file_full_path );
+    }
+  }
+
+  // ==================================================================================
+  // Function:      Load_Views()
+  // Parameters:    $classname
+  // Return:
+  // ==================================================================================
+
+  public function Load_Controllers( $classname ) {
+    foreach( self::$paths as $dir ) {
+      list($class) = explode('_', $classname);
+      $file_full_path = $dir . '/' . $class . '.controller.php';
+      $file_full_path = str_replace("Controller", "", $file_full_path);
       $file_full_path = strtolower($file_full_path);
 
       if( file_exists( $file_full_path ) )

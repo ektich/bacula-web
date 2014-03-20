@@ -17,14 +17,9 @@
 
  // Class autloader instance creation
  require_once(getcwd() . "/core/app/classautoloader.class.php");
- ClassAutoLoader::init();
- 
- // Add root path and exclusions
- ClassAutoLoader::add_Exclusion('core/external/smarty-gettext');
- ClassAutoLoader::add_Exclusion('core/external/bootstrap');
- ClassAutoLoader::add_Path('core');
- ClassAutoLoader::add_Path('application');
- 
+
+ $classloader = new ClassAutoloader();
+
  // Get all $_POST and $_GET values
  CHttpRequest::get_Vars();
  
