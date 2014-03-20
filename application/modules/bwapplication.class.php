@@ -5,7 +5,6 @@ class BwApplication extends Application {
     private $user_config         = CONFIG_FILE;
     
     public function bootstrap() {
-        try {
 	    // Set default controller
             $this->default_controller = 'Dashboard';
             $this->default_view       = 'Dashboard';
@@ -50,12 +49,16 @@ class BwApplication extends Application {
                 // Catalogs count
                 $this->view->assign('catalog_nb', $catalog_nb );
             }
-            
-
-        }catch( Exception $e ) {
+    }
+ 
+    public function run() {
+        try {
+            $this->bootstrap();
+            parent::run();
+        }catch( Exception $e) {
             CErrorHandler::displayError($e);
         }
-        
     }
+
 } // end of class
 ?>
