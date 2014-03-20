@@ -20,6 +20,8 @@ class View extends Smarty {
     public $title;
     protected $template_file;
 
+    protected $model;
+
     private $language;
     private $charset;
     private $domaine;   
