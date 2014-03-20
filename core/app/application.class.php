@@ -9,8 +9,6 @@ class Application {
     private $language;
     private $user_config;
 
-    private  $catalog_current_id;
-    
     public function __construct($app_config_file) {
         require_once( $app_config_file);
         

@@ -1,6 +1,7 @@
 <?php
 
 class BwApplication extends Application {
+    private $catalog_current_id;
     private $user_config         = CONFIG_FILE;
     
     public function bootstrap() {
