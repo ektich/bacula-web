@@ -1,4 +1,9 @@
 <?php
-class DashboardModel extends Model {
+class Dashboard_Model extends DatabaseModel {
+
+  public function getPeriodStr() {
+    return 'Custom period';
+  }
+
 }
 ?>
