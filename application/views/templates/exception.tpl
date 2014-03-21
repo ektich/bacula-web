@@ -23,7 +23,7 @@
         <tr>
           <td>{$trace.file}</td>
           <td>{$trace.line}</td> 
-          <td>{$trace.class}{$trace.type}{$trace.function}</td>
+          <td>{$trace.class}&nbsp; {$trace.type}&nbsp;{$trace.function}</td>
         </tr>
       {/foreach}
      </tbody>
