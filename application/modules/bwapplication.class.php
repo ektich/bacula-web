@@ -21,23 +21,23 @@ class BwApplication extends Application {
             $this->language = FileConfig::get_Value( 'language' );
 			
             if( !$this->language )
-		throw new Exception("Language configuration problem");
+				throw new Exception("Language configuration problem");
 			
             // Check if at least one catalog is defined
-	    if( FileConfig::count_Catalogs() == 0) {
+			if( FileConfig::count_Catalogs() == 0) {
                 throw new Exception("Please define at least on Bacula director connection");
-	    }
+			}
 
             // Get current catalog id
-           if( !is_null(CHttpRequest::get_Value('catalog_id') ) ) {
+			if( !is_null(CHttpRequest::get_Value('catalog_id') ) ) {
                $this->catalog_current_id = CHttpRequest::get_Value('catalog_id');
                $_SESSION['catalog_id'] = $this->catalog_current_id;
-           }elseif( isset( $_SESSION['catalog_id'] ) )
+			}elseif( isset( $_SESSION['catalog_id'] ) )
                $this->catalog_current_id = $_SESSION['catalog_id'];
-           else {
+			else {
                $this->catalog_current_id = 0;
                $_SESSION['catalog_id'] = $this->catalog_current_id;
-           }
+			}
            
             // Template engine initalization
 
@@ -52,12 +52,8 @@ class BwApplication extends Application {
     }
  
     public function run() {
-        try {
-            $this->bootstrap();
-            parent::run();
-        }catch( Exception $e) {
-            CErrorHandler::displayError($e);
-        }
+        $this->bootstrap();
+        parent::run();
     }
 
 } // end of class
