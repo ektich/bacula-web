@@ -25,7 +25,7 @@ class BwApplication extends Application {
 			
             // Check if at least one catalog is defined
 			if( FileConfig::count_Catalogs() == 0) {
-                throw new Exception("Please define at least on Bacula director connection");
+                throw new Exception("Please define at least one Bacula director connection");
 			}
 
             // Get current catalog id
