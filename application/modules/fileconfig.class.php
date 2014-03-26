@@ -14,9 +14,6 @@
   | GNU General Public License for more details.                            |
   +-------------------------------------------------------------------------+
  */
- 
-	 require_once( 'core/global.inc.php' );
-	 
 	 class FileConfig extends File {
 
 		 // ==================================================================================
