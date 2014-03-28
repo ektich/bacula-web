@@ -24,20 +24,20 @@ class Application {
     }
     
     public function run() {
-            $router  = new RouterController();
-            $context = $router->getContext();
+        $router  = new RouterController();
+        $context = $router->getContext();
 
-            $controller_class_name = null;
-            $view_class_name       = null;
+        $controller_class_name = null;
+        $view_class_name       = null;
 
-            // debug
-            if( !is_null($context) ) {
-                $controller_class_name = ucfirst($context) . '_Controller';
-                $view_class_name       = ucfirst($context) . '_View';
-            }else {
-                $controller_class_name = $this->default_controller . '_Controller';
-                $view_class_name       = $this->default_view . '_View';
-            }
+        // debug
+        if( !is_null($context) ) {
+            $controller_class_name = ucfirst($context) . '_Controller';
+            $view_class_name       = ucfirst($context) . '_View';
+        }else {
+            $controller_class_name = $this->default_controller . '_Controller';
+            $view_class_name       = $this->default_view . '_View';
+        }
 
         // Check if context controller exist
         try {
