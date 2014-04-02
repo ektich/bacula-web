@@ -2,7 +2,7 @@
 
 class DatabaseModel extends Model
 {
-   private $dbadapter;
+   protected $dbadapter;
 
    public function __construct()
    {
