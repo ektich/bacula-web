@@ -26,7 +26,13 @@ class View extends Smarty {
     private $charset;
     private $domaine;   
     
-    public function __construct() {
+    public function __construct( $model ) {
+    
+        if(!is_null($model))
+            $this->model = $model;
+        else
+            throw new Exception('Provided Model class (' . get_class($model) . ') is null');
+
         $this->init();
     }
 
