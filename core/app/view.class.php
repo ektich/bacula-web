@@ -26,13 +26,9 @@ class View extends Smarty {
     private $charset;
     private $domaine;   
     
-    public function __construct( $model ) {
+    public function __construct( &$model ) {
     
-        if(!is_null($model))
-            $this->model = $model;
-        else
-            throw new Exception('Provided Model class (' . get_class($model) . ') is null');
-
+        $this->model = $model;
         $this->init();
     }
 
@@ -46,7 +42,11 @@ class View extends Smarty {
 
         // Setting up language translation
         $this->register_block('t', 'smarty_translate');
+
+        if( !FileConfig::open( CONFIG_FILE ) )
+                throw new Exception("The configuration file is missing or not readable");
         $this->language = FileConfig::get_Value( 'language');
+
         $this->charset  = 'UTF-8';
 
         putenv("LANGUAGE=" . $this->language . '.' . $this->charset);

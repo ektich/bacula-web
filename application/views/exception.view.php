@@ -20,11 +20,10 @@
     public $title		= 'Exception';
     protected $template_file    = 'exception.tpl';
 
-    public function index( $exception ) {
-      $this->model = new Exception_Model( $exception );
-
-      $this->assign( 'exception_header', $this->model->getExceptionHeader() );    
-      $this->assign( 'exception_message', $this->model->getExceptionMessage() );
-      $this->assign( 'exception_traces', $this->model->getExceptionTraces() );
+    public function index( $exception ) 
+    {
+       $this->assign( 'exception_header', $this->model->getExceptionHeader() );    
+       $this->assign( 'exception_message', $this->model->getExceptionMessage() );
+       $this->assign( 'exception_traces', $this->model->getExceptionTraces() );
     }
  }

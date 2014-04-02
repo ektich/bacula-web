@@ -42,16 +42,12 @@ class BwApplication extends Application
     {
         try {
             $router       	= new RouterController('Dashboard');
-            $context      	= $router->getContext();
-
+            
             $controller_class   = $router->getController();
             $view_class         = $router->getView();
             $model_class  	= $router->getModel();
 
             $this->bootstrap();
-
-            // Bacula catalog selection
-            $catalog_nb = FileConfig::count_Catalogs();
 
             // Create new instance of Controller, Model and View classes
             $this->controller = new $controller_class();
@@ -72,12 +68,12 @@ class BwApplication extends Application
             $this->view->render();
 
         }catch ( Exception $e) {
-             $this->exception   = $e;
-             $this->view = new Exception_Controller();	
-             $this->model = new Exception_Model();
-             $this->view = new Exception_View( $this->model );	
-             $this->view->index( $this->exception);
-             $this->view->render();
+            $this->exception   = $e;
+            $this->view  = new Exception_Controller();	
+            $this->model = new Exception_Model($e);
+            $this->view  = new Exception_View( $this->model );	
+            $this->view->index($this->exception);
+            $this->view->render();
         }
     }
 } // end of class
