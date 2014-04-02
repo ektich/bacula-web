@@ -7,10 +7,6 @@ class BwApplication extends Application
 
     public function bootstrap()
     {
-        // Set default controller
-            $this->default_controller = 'Dashboard';
-            $this->default_view       = 'Dashboard';
-
             // Check config file exist and is readable
             if( !FileConfig::open( CONFIG_FILE ) )
                 throw new Exception("The configuration file is missing or not readable");
@@ -29,51 +25,59 @@ class BwApplication extends Application
             if ( FileConfig::count_Catalogs() == 0) {
                 throw new Exception("Please define at least one Bacula director connection");
             }
+
+            // Get current catalog id
+            if ( !is_null(CHttpRequest::get_Value('catalog_id') ) ) {
+               $this->catalog_current_id = CHttpRequest::get_Value('catalog_id');
+               $_SESSION['catalog_id'] = $this->catalog_current_id;
+            }elseif( isset( $_SESSION['catalog_id'] ) )
+               $this->catalog_current_id = $_SESSION['catalog_id'];
+            else {
+               $this->catalog_current_id = 0;
+               $_SESSION['catalog_id'] = $this->catalog_current_id;
+            }
     }
 
     public function run()
     {
-        $router  = new RouterController();
-        $context = $router->getContext();
-
-        $controller_class_name = null;
-        $view_class_name       = null;
-
         try {
+            $router       	= new RouterController('Dashboard');
+            $context      	= $router->getContext();
+
+            $controller_class   = $router->getController();
+            $view_class         = $router->getView();
+            $model_class  	= $router->getModel();
 
             $this->bootstrap();
-        
-            if ( !is_null($context) ) {
-                $controller_class_name = ucfirst($context) . '_Controller';
-                $view_class_name       = ucfirst($context) . '_View';
-            } else {
-                $controller_class_name = $this->default_controller . '_Controller';
-                $view_class_name       = $this->default_view . '_View';
+
+            // Bacula catalog selection
+            $catalog_nb = FileConfig::count_Catalogs();
+
+            // Create new instance of Controller, Model and View classes
+            $this->controller = new $controller_class();
+            $this->model      = new $model_class();
+            $this->view       = new $view_class( $this->model );
+
+            // Bacula catalog selection
+            $catalog_nb = FileConfig::count_Catalogs();
+
+            if ($catalog_nb > 1) {
+                // Catalogs list
+                $this->view->assign('catalogs', FileConfig::get_Catalogs() );
+                // Catalogs count
+                $this->view->assign('catalog_nb', $catalog_nb );
             }
 
-            if( !class_exists($controller_class_name) )
-                throw new Exception( "Controller class ($controller_class_name) do not exist" );
+            $this->view->index($this->model);
+            $this->view->render();
 
-	    if( !class_exists($view_class_name) )
-                throw new Exception( "View class ($view_class_name) do not exist" );
-            
-            // In case an exception is thrown ...
-        } catch ( Exception $e) {
-             $this->exception       = $e;
-             $controller_class_name = 'Exception_Controller';
-             $view_class_name       = 'Exception_View';
+        }catch ( Exception $e) {
+             $this->exception   = $e;
+             $this->view = new Exception_Controller();	
+             $this->model = new Exception_Model();
+             $this->view = new Exception_View( $this->model );	
+             $this->view->index( $this->exception);
+             $this->view->render();
         }
-
-        $controller = new $controller_class_name();
-        $view       = new $view_class_name();
-
-        // if no action defined in url
-        if( !is_null($this->exception) )
-           $view->index( $this->exception );
-        else
-           $view->index();
-
-        $view->render();
     }
-
 } // end of class
