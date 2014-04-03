@@ -16,16 +16,15 @@ class DatabaseModel extends Model
    // Return:           return row count for one table
    // ==================================================================================
 
-   protected function count($tablename, $filter = null)
+   public function count($tablename, $filter = null)
    {
         $fields         = array( 'COUNT(*) as row_count' );
 
         // Prepare and execute query
         $statment       = CDBQuery::get_Select( array( 'table' => $tablename, 'fields' => $fields, $filter) );
-        $result         = CDBUtils::runQuery($statment, $this->db_link);
-
+        $result         = CDBUtils::runQuery($statment, $this->dbadapter->db_link);
+   
         $result         = $result->fetch();
-
         return $result['row_count'];
    }
 }
