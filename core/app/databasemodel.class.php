@@ -12,7 +12,7 @@ class DatabaseModel extends Model
    // ==================================================================================
    // Function:         count()
    // Parameters:       $tablename
-   //                           $filter (optional)
+   //                   $filter (optional)
    // Return:           return row count for one table
    // ==================================================================================
 
@@ -27,4 +27,26 @@ class DatabaseModel extends Model
         $result         = $result->fetch();
         return $result['row_count'];
    }
+
+   // ==================================================================================
+   // Function:         sum()
+   // Parameters:       $tablename
+   //			$field
+   //                   $filter (optional)
+   // Return:           return sum of one field of a table
+   // ==================================================================================
+
+   public function sum($tablename, $field, $filter = null)
+   {
+        $fields         = array( "SUM($field) as row_sum" );
+
+        // Prepare and execute query
+        $statment       = CDBQuery::get_Select( array( 'table' => $tablename, 'fields' => $fields, $filter) );
+        echo $statment;
+        $result         = CDBUtils::runQuery($statment, $this->dbadapter->db_link);
+
+        $result         = $result->fetch();
+        return $result['row_sum'];
+   }
+
 }
