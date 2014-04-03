@@ -42,7 +42,6 @@ class DatabaseModel extends Model
 
         // Prepare and execute query
         $statment       = CDBQuery::get_Select( array( 'table' => $tablename, 'fields' => $fields, $filter) );
-        echo $statment;
         $result         = CDBUtils::runQuery($statment, $this->dbadapter->db_link);
 
         $result         = $result->fetch();
