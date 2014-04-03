@@ -7,6 +7,7 @@
            <div class="panel-heading">Catalog statistics</div>
            <div class="panel-body">
              <h5>Client(s)<span class="label label-primary pull-right">{$clients_nb}</span></h5>
+             <h5>Stored Bytes<span class="label label-primary pull-right">{$stored_bytes}</span></h5>
            </div> 
          </div>
       </div>

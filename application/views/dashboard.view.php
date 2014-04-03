@@ -23,6 +23,9 @@
     public function index( $action = null) {
         // Clients count
         $this->assign( 'clients_nb', $this->model->countClients());        
+
+        // Stored bytes
+        $this->assign( 'stored_bytes', $this->model->getStoredBytes());
     }
     
     public function render() 
