@@ -25,55 +25,38 @@ class RouterController {
 
         if (isset( $_GET['page']))
             $this->context = $_GET['page'];
-        else
+        else {
             $this->context = $this->default_context;
+        }
     }
 
-    public function getContext() {
-         if(!is_null($this->context))
-             return $this->context;
-         else
-             return false;
+    private function getContext() {
+        return $this->context;
     }
 
     public function getController() {   
-        $classname = '';
+        $classname = ucfirst($this->context) . '_Controller';
 
-        if(!is_null($this->getContext())) {
-            $classname = ucfirst($this->context) . '_Controller';
-
-            if( !class_exists($classname) )
-                throw new Exception( "Controller class ($classname) do not exist" );
-        }else
-            $classname = 'Dashboard_Controller';
+        if( !class_exists($classname) )
+            throw new Exception( "Controller class ($classname) do not exist" );
  
         return $classname;
     }
 
     public function getView() {
-        $classname = '';
+        $classname = ucfirst($this->context) . '_View';
 
-        if(!is_null($this->getContext())) {
-            $classname = ucfirst($this->context) . '_View';
-
-            if( !class_exists($classname) )
-                throw new Exception( "View class ($classname) do not exist" );
-        }else
-            $classname = 'Dashboard_View';
+        if( !class_exists($classname) )
+            throw new Exception( "View class ($classname) do not exist" );
 
         return $classname;
     }
 
     public function getModel() {
-        $classname = '';
+        $classname = ucfirst($this->context) . '_Model';
 
-        if(!is_null($this->getContext())) {
-            $classname = ucfirst($this->context) . '_Model';
-
-            if( !class_exists($classname) )
-                throw new Exception( "Model class ($classname) do not exist" );
-        }else
-            $classname = 'Dashboard_Model';
+        if( !class_exists($classname) )
+            throw new Exception( "Model class ($classname) do not exist" );
 
         return $classname;
     }
