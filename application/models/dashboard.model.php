@@ -1,9 +1,8 @@
 <?php
 class Dashboard_Model extends DatabaseModel {
 
-  public function getPeriodStr() {
-    return 'Custom period';
-  }
-
+    public function countClients() {
+        return $this->count('Client');
+    }
 }
 ?>

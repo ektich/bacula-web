@@ -21,7 +21,8 @@
     protected $template_file    = 'dashboard.tpl';
 
     public function index( $action = null) {
-        // to be completed
+        // Clients count
+        $this->assign( 'clients_nb', $this->model->countClients());        
     }
     
     public function render() 
