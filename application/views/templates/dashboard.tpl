@@ -6,8 +6,8 @@
          <div class="panel panel-default">
            <div class="panel-heading">Catalog statistics</div>
            <div class="panel-body">
-             <h5>Client(s)<span class="label label-primary pull-right">{$clients_nb}</span></h5>
-             <h5>Stored Bytes<span class="label label-primary pull-right">{$stored_bytes}</span></h5>
+             <h4>Client(s)<span class="label label-primary pull-right">{$clients_nb}</span></h4>
+             <h4>Stored Bytes<span class="label label-primary pull-right">{$stored_bytes}</span></h4>
            </div> 
          </div>
       </div>
