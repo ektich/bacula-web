@@ -9,5 +9,10 @@ class Dashboard_Model extends DatabaseModel {
         $stored_bytes = $this->sum('Job', 'JobBytes');
         return  CUtils::Get_Human_Size($stored_bytes, 1);
     }
+
+    public function getStoredFiles() {
+        $stored_files = $this->sum('Job', 'JobFiles');
+        return  CUtils::format_Number($stored_files, 0);
+    }
 }
 ?>

@@ -26,6 +26,10 @@
 
         // Stored bytes
         $this->assign( 'stored_bytes', $this->model->getStoredBytes());
+
+        // Stored files
+        $this->assign( 'stored_files', $this->model->getStoredFiles());
+  
     }
     
     public function render() 
