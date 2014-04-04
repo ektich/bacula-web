@@ -64,6 +64,9 @@ class BwApplication extends Application
                 $this->view->assign('catalog_nb', $catalog_nb );
             }
 
+            // Define catalog id for Catalog selector in header
+            $this->view->assign('catalog_selected_id',$this->catalog_current_id);
+
             $this->view->index($this->model);
             $this->view->render();
 

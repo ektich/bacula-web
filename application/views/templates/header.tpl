@@ -19,7 +19,7 @@
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-     <a class="navbar-brand" href="#">Bacula-Web</a>
+     <a class="navbar-brand" href="index.php">Bacula-Web</a>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -30,7 +30,7 @@
             <li><a href="index.php?page=Dashboard">Dashboard</a><li>
             <li class="divider"></li>
             <li><a href="index.php?page=Jobs">Last jobs</a></li>
-            <li><a href="index.php.php?page=Pools">Pools and volumes</a></li>
+            <li><a href="index.php?page=Pools">Pools and volumes</a></li>
             <li class="divider"></li>
             <li><a href="#">Jobs grid</a></li>
             <li class="divider"></li>
@@ -42,14 +42,20 @@
       <ul class="nav navbar-nav navbar-right">
 
 	  {if $catalog_nb > 1}
+
 	  <!-- Bacula catalog dropdown -->
 	  <li>
 	   <form class="navbar-form" action="index.php" method="post">
-	   <select class="form-control" selected={$catalog_current_id}>
-		   {foreach from=$catalogs item=catalog}
-             <option>{$catalog}</option>
+	   <select name="catalog_id" class="form-control">
+		   {foreach from=$catalogs key=catalog_id item=catalog_name}
+             <option value="{$catalog_id}"
+             {if $catalog_id eq $catalog_selected_id} selected {/if} > 
+               {$catalog_name}
+             </option>
            {/foreach}
 	   </select>
+            <button type="submit" class="btn btn-success">Use</button>
+            {$catalog_selected_id}
 	  </form>
 	   </li>
 	   {/if}
@@ -147,7 +153,7 @@
    <!-- Condifitional catalog selection if more than 1 catalog is defined in the configuration -->
 <!--    {if $catalog_nb > 1}
       <form class="catalog_selector" method="post" action="index.php">
-        Catalog {html_options name=catalog_id options=$catalogs selected=$catalog_current_id onchange="submit();"}
+        Catalog {html_options name=catalog_id options=$catalogs selected={$catalog_current_id} onchange="submit();"}
           <noscript><input type="submit" value="Select"></noscript>
       </form>
     {/if}
