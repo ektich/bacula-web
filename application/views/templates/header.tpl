@@ -27,8 +27,10 @@
 	  <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reports<b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a href="jobs.php">Last jobs</a></li>
-            <li><a href="pools.php">Pools and volumes</a></li>
+            <li><a href="index.php?page=Dashboard">Dashboard</a><li>
+            <li class="divider"></li>
+            <li><a href="index.php?page=Jobs">Last jobs</a></li>
+            <li><a href="index.php.php?page=Pools">Pools and volumes</a></li>
             <li class="divider"></li>
             <li><a href="#">Jobs grid</a></li>
             <li class="divider"></li>
@@ -63,8 +65,8 @@
 
 		 <ul class="dropdown-menu">
 		  <li role="presentation" class="dropdown-header">Tools</li>
-		  <li> <a href="test.php">Settings</a></li>
-		  <li> <a href="test.php">Test page</a></li>
+		  <li> <a href="index.php?page=Settings">Settings</a></li>
+		  <li> <a href="index.php?page=Check">Test page</a></li>
 		  <li role="presentation" class="divider"></li>
 		  <li role="presentation" class="dropdown-header">Help</li>
 		  <li> <a href="http://www.bacula-web.org" target="_blank">Official web site</a> </li>
