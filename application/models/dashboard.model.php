@@ -18,5 +18,9 @@ class Dashboard_Model extends DatabaseModel {
     public function countPools() {
         return $this->count('Pool');
     }
+
+    public function countVolumes() {
+         return $this->count('Media');
+    }
 }
 ?>

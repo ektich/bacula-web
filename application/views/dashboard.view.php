@@ -27,6 +27,9 @@
         // Pools count
         $this->assign( 'pools_nb', $this->model->countPools() );
 
+        // Volumes count
+        $this->assign( 'volumes_nb', $this->model->countVolumes() );
+
         // Stored bytes
         $this->assign( 'stored_bytes', $this->model->getStoredBytes());
 

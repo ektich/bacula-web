@@ -8,6 +8,7 @@
            <div class="panel-body">
              <h4>Client(s)<span class="label label-primary pull-right">{$clients_nb}</span></h4>
              <h4>Pool(s)<span class="label label-primary pull-right">{$pools_nb}</span></h4>
+             <h4>Volume(s)<span class="label label-primary pull-right">{$volumes_nb}</h4>
              <h4>Stored Bytes<span class="label label-primary pull-right">{$stored_bytes}</span></h4>
              <h4>Stored Files<span class="label label-primary pull-right">{$stored_files}</span></h4>
            </div> 
