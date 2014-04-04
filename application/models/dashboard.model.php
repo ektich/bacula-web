@@ -14,5 +14,9 @@ class Dashboard_Model extends DatabaseModel {
         $stored_files = $this->sum('Job', 'JobFiles');
         return  CUtils::format_Number($stored_files, 0);
     }
+
+    public function countPools() {
+        return $this->count('Pool');
+    }
 }
 ?>

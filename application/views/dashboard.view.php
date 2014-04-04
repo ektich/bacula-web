@@ -24,6 +24,9 @@
         // Clients count
         $this->assign( 'clients_nb', $this->model->countClients());        
 
+        // Pools count
+        $this->assign( 'pools_nb', $this->model->countPools() );
+
         // Stored bytes
         $this->assign( 'stored_bytes', $this->model->getStoredBytes());
 
