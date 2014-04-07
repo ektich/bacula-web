@@ -30,7 +30,6 @@
         }
 
         public function setVar( $var, $value ) {
-            echo "variable name $var value $value";
             $_SESSION[$var] = $value;
         }
 
