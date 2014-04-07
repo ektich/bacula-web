@@ -35,13 +35,11 @@ class DatabaseAdapter {
     
     public function __construct() 
     { 
-            global $bwapp;
-
             // Prepare database connection parameters
-            $this->dsn    = FileConfig::get_DataSourceName( $bwapp->catalog_current_id );
+            $this->dsn    = FileConfig::get_DataSourceName( UserSession::getVar('catalog_id') );
 
             // Getting driver name from PDO connection
-            $this->db_driver     = FileConfig::get_Value( 'db_type', $bwapp->catalog_current_id);
+            $this->db_driver     = FileConfig::get_Value( 'db_type', UserSession::getVar('catalog_id') );
 
             // Set database options
             $db_options = array( PDO::ATTR_CASE => PDO::CASE_LOWER,
@@ -53,9 +51,9 @@ class DatabaseAdapter {
                 $db_options[] = array(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true);
 
             // Define username and password for MySQL and postgreSQL
-            if( FileConfig::get_Value( 'db_type', $bwapp->catalog_current_id) != 'sqlite' ) {
-                $this->username = FileConfig::get_Value( 'login', $bwapp->catalog_current_id);
-                $this->password = FileConfig::get_Value( 'password', $bwapp->catalog_current_id);
+            if( FileConfig::get_Value( 'db_type', UserSession::getVar('catalog_id') ) != 'sqlite' ) {
+                $this->username = FileConfig::get_Value( 'login', UserSession::getVar('catalog_id') );
+                $this->password = FileConfig::get_Value( 'password', UserSession::getVar('catalog_id') );
 
                 // Create PDO database connection
 		$this->db_link = new PDO($this->dsn, $this->username, $this->password);

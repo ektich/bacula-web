@@ -29,11 +29,9 @@
 		private $db_driver;		// Database connection driver
 		
 		public  $catalog_nb;		// Catalog count
-		public	$catalog_current_id;	// Current catalog
 
 		function __construct( &$view )
 		{       
-                    global $bwapp;      
 		    // Template engine initalization
 		    $this->view = $view;
 			

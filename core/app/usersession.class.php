@@ -17,9 +17,29 @@
  */
 
     class UserSession {
-        
-        private function __construct()
 
+        private static $session_id;
+        
+        private function __construct() {}
+
+        public function start() {
+            if( !isset( self::$session_id) ) {
+                session_start();
+                self::$session_id = session_id();
+            }
+        }
+
+        public function setVar( $var, $value ) {
+            echo "variable name $var value $value";
+            $_SESSION[$var] = $value;
+        }
+
+        public function getVar( $var ) {
+            if( isset( $_SESSION[$var] ) )
+                return $_SESSION[$var];
+            else
+                return null;
+        }
     }
 
 ?>

@@ -16,8 +16,8 @@
   +-------------------------------------------------------------------------+
 */
 
-session_start();
 include_once( 'application/bootstrap.php' );
+UserSession::start();
 
 // Instanciate, bootstrap and run new Application instance (Bacula-Web)
 $bwapp = new BwApplication('application/config/bwapp.config.php');

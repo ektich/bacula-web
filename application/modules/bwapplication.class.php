@@ -2,7 +2,7 @@
 
 class BwApplication extends Application
 {
-    public $catalog_current_id;
+    //public $catalog_current_id;
     private $user_config         = CONFIG_FILE;
 
     public function bootstrap()
@@ -28,13 +28,9 @@ class BwApplication extends Application
 
             // Get current catalog id
             if ( !is_null(CHttpRequest::get_Value('catalog_id') ) ) {
-               $this->catalog_current_id = CHttpRequest::get_Value('catalog_id');
-               $_SESSION['catalog_id'] = $this->catalog_current_id;
-            }elseif( isset( $_SESSION['catalog_id'] ) )
-               $this->catalog_current_id = $_SESSION['catalog_id'];
-            else {
-               $this->catalog_current_id = 0;
-               $_SESSION['catalog_id'] = $this->catalog_current_id;
+               UserSession::setVar( 'catalog_id', CHttpRequest::get_Value('catalog_id') );
+            }else {
+               UserSession::setVar( 'catalog_id', 0);
             }
     }
 
@@ -65,7 +61,8 @@ class BwApplication extends Application
             }
 
             // Define catalog id for Catalog selector in header
-            $this->view->assign('catalog_selected_id',$this->catalog_current_id);
+            //$this->view->assign('catalog_selected_id',$this->catalog_current_id);
+            $this->view->assign('catalog_selected_id', UserSession::getVar('catalog_id'));
 
             $this->view->index($this->model);
             $this->view->render();
