@@ -64,5 +64,10 @@ class Dashboard_Model extends DatabaseModel {
 
         return $temp;
     }
+
+    public function getDatabaseSize() {
+       $dbmodel = new Database_Model();
+       return $dbmodel->getSize(); 
+    } 
 }
 ?>

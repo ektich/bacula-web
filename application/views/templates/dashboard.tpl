@@ -32,6 +32,7 @@
              <h4>Volume(s)<span class="label label-primary pull-right">{$volumes_nb}</h4>
              <h4>Stored Bytes<span class="label label-primary pull-right">{$stored_bytes}</span></h4>
              <h4>Stored Files<span class="label label-primary pull-right">{$stored_files}</span></h4>
+             <h4>Database size<span class="label label-primary pull-right">{$database_size}</span></h4>
            </div> 
          </div>
       </div>

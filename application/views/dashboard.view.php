@@ -41,6 +41,9 @@
 
         // Stored files
         $this->assign( 'stored_files', $this->model->getStoredFiles() );
+ 
+        // Database size
+        $this->assign( 'database_size', $this->model->getDatabaseSize() );
     }
     
     public function render() 
