@@ -2,7 +2,28 @@
 
 <div class="container-fluid">
     <div class="row">
-      <div class="col-md-2">
+      <div class="col-md-8">
+        <div class="well well-sm">{$period_str}</div>
+      </div>
+      <div class="col-md-4">
+        <form class="form-inline pull-right" role="form" method="post">
+          <select name="period" class="form-control">
+            {foreach from=$periods key=period_id item=period_label}
+              <option value="{$period_id}"
+              {if $period_id eq $period} selected {/if}> 
+              {$period_label}
+              </option>
+            {/foreach}
+          </select>
+          <button type="submit" class="btn btn-default">Select</button>
+        </form> 
+      </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3">
          <div class="panel panel-default">
            <div class="panel-heading">Catalog statistics</div>
            <div class="panel-body">
@@ -21,7 +42,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-5">
+      <div class="col-md-4">
         <div class="panel panel-default">
           <div class="panel-heading">Last period job status</div>
           <div class="panel-body">

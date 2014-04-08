@@ -26,11 +26,18 @@ class BwApplication extends Application
                 throw new Exception("Please define at least one Bacula director connection");
             }
 
-            // Get current catalog id
-            if ( !is_null(CHttpRequest::get_Value('catalog_id') ) ) {
-               UserSession::setVar( 'catalog_id', CHttpRequest::get_Value('catalog_id') );
+            // Get / Set catalog id
+            if( !is_null(CHttpRequest::get_Value('catalog_id') ) ) {
+               UserSession::setVar('catalog_id', CHttpRequest::get_Value('catalog_id') );
             }else {
-               UserSession::setVar( 'catalog_id', 0);
+               UserSession::setVar('catalog_id', 0);
+            }
+
+            // Get / Set period
+            if( !is_null(CHttpRequest::get_Value('period')) ) {
+               UserSession::setVar('period', CHttpRequest::get_Value('period') );
+            }else {
+               UserSession::setVar('period', 'all');
             }
     }
 
@@ -61,8 +68,9 @@ class BwApplication extends Application
             }
 
             // Define catalog id for Catalog selector in header
-            //$this->view->assign('catalog_selected_id',$this->catalog_current_id);
             $this->view->assign('catalog_selected_id', UserSession::getVar('catalog_id'));
+            // Define period for Period selector
+            $this->view->assign('period', UserSession::getVar('period'));
 
             $this->view->index($this->model);
             $this->view->render();

@@ -21,8 +21,14 @@
     protected $template_file    = 'dashboard.tpl';
 
     public function index( $action = null) {
+        // Period string
+        $this->assign('period_str', $this->model->getPeriodStr() );
+
+        // Period list
+        $this->assign('periods', $this->model->getPeriodList() );        
+
         // Clients count
-        $this->assign( 'clients_nb', $this->model->countClients());        
+        $this->assign( 'clients_nb', $this->model->countClients() );        
 
         // Pools count
         $this->assign( 'pools_nb', $this->model->countPools() );
@@ -31,11 +37,10 @@
         $this->assign( 'volumes_nb', $this->model->countVolumes() );
 
         // Stored bytes
-        $this->assign( 'stored_bytes', $this->model->getStoredBytes());
+        $this->assign( 'stored_bytes', $this->model->getStoredBytes() );
 
         // Stored files
-        $this->assign( 'stored_files', $this->model->getStoredFiles());
-  
+        $this->assign( 'stored_files', $this->model->getStoredFiles() );
     }
     
     public function render() 
