@@ -83,5 +83,15 @@ class DatabaseAdapter {
         $server_version = explode(':', $server_version);
         return $server_version[0];
     }
+
+    // ==================================================================================
+    // Function:	__destruct()
+    // Parameters:	none
+    // Return:		none
+    // ==================================================================================
+
+    public function __destruct() {
+        $this->db_link = null;
+    }
 }
 ?>
