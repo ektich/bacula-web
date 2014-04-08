@@ -15,18 +15,8 @@
   +-------------------------------------------------------------------------+
  */
 
- class Pools_Model extends Model {
+ class Pools_Model extends DatabaseModel {
 
-	// ==================================================================================
-	// Function: 	count()
-	// Parameters:	$pdo (PDO valid connection)
-	// Return:	row count for one table
-	// ==================================================================================
-	
-	public static function count( $pdo ) {
-		return CModel::count( $pdo, 'Pool');
-	}
-  
 	// ==================================================================================
 	// Function: 	getPools()
 	// Parameters:	$pdo (PDO valid connection)

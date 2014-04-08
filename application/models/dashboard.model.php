@@ -32,7 +32,8 @@ class Dashboard_Model extends DatabaseModel {
     }
 
     public function countPools() {
-        return $this->count('Pool');
+        $poolmodel = new Pools_Model();
+        return $poolmodel->count('Pool');
     }
 
     public function countVolumes() {
