@@ -37,7 +37,8 @@ class Dashboard_Model extends DatabaseModel {
     }
 
     public function countVolumes() {
-        return $this->count('Media');
+        $volmodel = new Volumes_Model;
+        return $volmodel->count('Media');
     }
  
     public function getPeriodStr() {

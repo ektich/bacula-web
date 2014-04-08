@@ -15,18 +15,7 @@
   +-------------------------------------------------------------------------+
  */
 
- class Volumes_Model extends Model {
- 
-    // ==================================================================================
-	// Function: 	count()
-	// Parameters:	$tablename
-	//				$filter (optional)
-	// Return:		return row count for one table
-	// ==================================================================================
-	
-	public static function count( $pdo ) {
-		return CModel::count( $pdo, 'Media');
-	}
+ class Volumes_Model extends DatabaseModel {
 
 	// ==================================================================================
 	// Function: 	getDiskUsage()
