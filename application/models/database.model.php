@@ -15,7 +15,7 @@
   +-------------------------------------------------------------------------+
  */
 
- class Database_Model extends Model {
+ class Database_Model extends DatabaseModel {
  
  	// ==================================================================================
 	// Function: 	get_Size()
@@ -23,22 +23,22 @@
 	// Return:		Database size
 	// ==================================================================================
 	
-	public static function get_Size( $pdo_connection, $catalog_id ) {
-		$db_name	= FileConfig::get_Value( 'db_name', $catalog_id);
+	public function getSize() {
+		$db_name	= FileConfig::get_Value( 'db_name', UserSession::getVar('catalog_id') );
 		$statment 	= null;
 		$result	 	= null;
 		
-		switch( CDB::getDriverName() )
+		switch( $this->dbadapter->getDriverName() )
 		{
 			case 'mysql':
 				// Return N/A for MySQL server prior version 5 (no information_schemas)
-				if( version_compare( CDB::getServerVersion(), '5.0.0') >= 0 ) {
+				if( version_compare( $this->dbadapter->getServerVersion(), '5.0.0') >= 0 ) {
 					// Prepare SQL statment
 					$statment = array( 'table'   => 'information_schema.TABLES', 
 									   'fields'  => array("table_schema AS 'database', sum( data_length + index_length) AS 'dbsize'"),
 									   'where'   => array( "table_schema = '$db_name'" ),
 									   'groupby' => 'table_schema' );
-					$statment 	= CDBQuery::get_Select($statment, $pdo_connection);
+					$statment 	= CDBQuery::get_Select($statment, $this->dbadapter->db_link);
 				}else
 					echo 'dbsize() unsupported ('.CDB::getServerVersion().') <br />';
 			break;
@@ -51,7 +51,7 @@
 			break;
 		}
 		// Execute SQL statment
-		$result   = CDBUtils::runQuery($statment, $pdo_connection);
+		$result   = CDBUtils::runQuery($statment, $this->dbadapter->db_link);
 		$db_size  = $result->fetch();
 		
 		return CUtils::Get_Human_Size( $db_size['dbsize'] );	

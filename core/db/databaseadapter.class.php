@@ -78,8 +78,8 @@ class DatabaseAdapter {
     // Return:		database server version
     // ==================================================================================
     
-    public static function getServerVersion() {
-        $server_version = self::$connection->getAttribute( PDO::ATTR_SERVER_VERSION );
+    public function getServerVersion() {
+        $server_version = $this->db_link->getAttribute( PDO::ATTR_SERVER_VERSION );
         $server_version = explode(':', $server_version);
         return $server_version[0];
     }
