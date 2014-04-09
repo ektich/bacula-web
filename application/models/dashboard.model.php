@@ -17,7 +17,6 @@
   +-------------------------------------------------------------------------+
 */
 
-<?php
 class Dashboard_Model extends DatabaseModel {
     private $periods;
 
