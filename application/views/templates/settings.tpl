@@ -6,7 +6,7 @@
         <div class="col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li class="active"><a href="index.php?page=Settings">Settings</a></li>
-            <li><a href="index.php?page=Requirements">Requirements</a></li>
+            <li><a href="index.php?page=Check">Requirements</a></li>
           </ul>
         </div>
 
