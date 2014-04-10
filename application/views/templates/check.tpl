@@ -28,7 +28,7 @@
          <tr>
            <td>PHP GD</td>
            <td class="text-center">
-             <span class="glyphicon glyphicon-{$php_session}"></span>
+             <span class="glyphicon glyphicon-{$php_gd}"></span>
            </td>
          </tr>
        </table>
