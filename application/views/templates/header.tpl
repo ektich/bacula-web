@@ -59,10 +59,6 @@
 	  </form>
 	   </li>
 	   {/if}
-
-	   <li>
-		  <a href="#" title="Refresh"><span class="glyphicon glyphicon-refresh"></span></a>
-	   </li>
 	   
 	   <li class="dropdown">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
