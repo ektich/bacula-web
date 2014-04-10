@@ -38,6 +38,9 @@
 
          // PHP MySQL
          $this->assign('php_mysql', $this->model->checkPhpMysql() );
+
+         // PHP PostgreSQL
+         $this->assign('php_postgresql', $this->model->checkPhpPostgresql() );
      }
  }
 

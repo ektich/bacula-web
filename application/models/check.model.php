@@ -52,6 +52,13 @@
             else
                 return 'remove';
         }
+
+        public function checkPhpPostgresql(){
+            if(function_exists('pg_connect')) 
+                return 'ok';
+            else
+                return 'remove';
+        }
     }
 
 

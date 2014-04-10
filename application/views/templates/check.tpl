@@ -43,6 +43,12 @@
              <span class="glyphicon glyphicon-{$php_mysql}"></span>
            </td>
          </tr>
+         <tr>
+           <td>PHP PostgreSQL</td>
+           <td class="text-center">
+             <span class="glyphicon glyphicon-{$php_postgresql}"></span>
+           </td>
+         </tr>
        </table>
    </div>
 
