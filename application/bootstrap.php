@@ -18,7 +18,18 @@
  // Class autloader instance creation
  require_once(getcwd() . "/core/app/classautoloader.class.php");
 
- $classloader = new ClassAutoloader();
+ $paths = array( 'application/models',
+                          'application/controllers',
+                          'application/views',
+                          'application/modules',
+                          'core',
+                          'core/app',
+                          'core/db',
+                          'core/graph',
+                          'core/utils',
+                           );
+
+ $classloader = new ClassAutoloader($paths);
 
  // Get all $_POST and $_GET values
  CHttpRequest::get_Vars();

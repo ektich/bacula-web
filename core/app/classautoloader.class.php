@@ -25,20 +25,10 @@ class ClassAutoLoader {
   // Return:	    
   // ==================================================================================
 
-  public function __construct() {
+  public function __construct($paths) {
 
     $this->current_path = getcwd();
-
-    $this->paths = array( 'application/models', 
-                          'application/controllers', 
-                          'application/views', 
-                          'application/modules',
-                          'core', 
-                          'core/app',
-                          'core/db',
-                          'core/graph',
-                          'core/utils',
-                           );
+    $this->paths        = $paths;
 
     // Register autoload function 
     spl_autoload_register( array($this,'loadClass'), true ); 
