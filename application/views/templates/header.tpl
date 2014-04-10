@@ -71,8 +71,8 @@
 
 		 <ul class="dropdown-menu">
 		  <li role="presentation" class="dropdown-header">Tools</li>
-		  <li> <a href="index.php?page=Settings">Settings</a></li>
-		  <li> <a href="index.php?page=Check">Test page</a></li>
+		  <li> <a href="index.php?page=Settings" title="Current settings">Settings</a></li>
+		  <li> <a href="index.php?page=Check" title="Check requirements">Check</a></li>
 		  <li role="presentation" class="divider"></li>
 		  <li role="presentation" class="dropdown-header">Help</li>
 		  <li> <a href="http://www.bacula-web.org" target="_blank">Official web site</a> </li>
