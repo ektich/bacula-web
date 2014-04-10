@@ -19,15 +19,15 @@
  require_once(getcwd() . "/core/app/classautoloader.class.php");
 
  $paths = array( 'application/models',
-                          'application/controllers',
-                          'application/views',
-                          'application/modules',
-                          'core',
-                          'core/app',
-                          'core/db',
-                          'core/graph',
-                          'core/utils',
-                           );
+                 'application/controllers',
+                 'application/views',
+                 'application/modules',
+                 'core',
+                 'core/app',
+                 'core/db',
+                 'core/graph',
+                 'core/utils'
+               );
 
  $classloader = new ClassAutoloader($paths);
 
