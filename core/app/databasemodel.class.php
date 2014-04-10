@@ -1,6 +1,6 @@
 <?php
 
-class DatabaseModel extends Model
+class DatabaseModel 
 {
    protected $dbadapter;
 
@@ -47,5 +47,4 @@ class DatabaseModel extends Model
         $result         = $result->fetch();
         return $result['row_sum'];
    }
-
 }
