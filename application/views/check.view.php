@@ -24,8 +24,11 @@
 
      public function index()
      {
-         // Gettext support
+         // PHP Gettext support
          $this->assign('php_gettext', $this->model->checkPhpGettext());
+ 
+         // PHP Session support
+         $this->assign('php_session', $this->model->checkPhpSession() );
      }
  }
 

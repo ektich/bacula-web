@@ -19,6 +19,12 @@
              <span class="glyphicon glyphicon-{$php_gettext}"></span>
            </td>
          </tr>  
+         <tr>
+           <td>PHP Session</td>
+           <td class="text-center">
+             <span class="glyphicon glyphicon-{$php_session}"></span>
+           </td>
+         </tr>
        </table>
    </div>
 

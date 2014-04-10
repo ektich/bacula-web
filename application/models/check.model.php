@@ -19,11 +19,19 @@
 
     class Check_Model extends Model {
         public function checkPhpGettext() {
-           if( function_exists('gettext') )
-               return 'ok';
-           else
-               return 'remove';
+            if( function_exists('gettext') )
+                return 'ok';
+            else
+                return 'remove';
+        }
+
+        public function checkPhpSession() {
+            if( function_exists('session_start')) {
+                return 'ok';
+            }else
+                return 'remove';
         }
     }
+
 
 ?>
