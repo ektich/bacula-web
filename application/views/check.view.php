@@ -24,7 +24,8 @@
 
      public function index()
      {
-
+         // Gettext support
+         $this->assign('php_gettext', $this->model->checkPhpGettext());
      }
  }
 
