@@ -59,6 +59,13 @@
             else
                 return 'remove';
         }
+
+        public function checkPhpSqlite() {
+            if(class_exists('SQLite3'))
+                return 'ok';
+            else
+                return 'remove';
+        }
     }
 
 

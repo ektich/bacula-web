@@ -49,6 +49,12 @@
              <span class="glyphicon glyphicon-{$php_postgresql}"></span>
            </td>
          </tr>
+         <tr>
+           <td>PHP SQLite</td>
+           <td class="text-center">
+             <span class="glyphicon glyphicon-{$php_sqlite}"></span>
+           </td>
+         </tr>
        </table>
    </div>
 

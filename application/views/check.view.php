@@ -41,6 +41,9 @@
 
          // PHP PostgreSQL
          $this->assign('php_postgresql', $this->model->checkPhpPostgresql() );
+
+         // PHP Sqlite
+         $this->assign('php_sqlite', $this->model->checkPhpSqlite() );
      }
  }
 
