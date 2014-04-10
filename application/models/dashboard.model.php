@@ -17,7 +17,7 @@
   +-------------------------------------------------------------------------+
 */
 
-class Dashboard_Model extends DatabaseModel {
+class Dashboard_Model {
     private $periods;
 
     public function __construct() {
@@ -32,20 +32,22 @@ class Dashboard_Model extends DatabaseModel {
                                                     'timestamps' => array(FIRST_DAY, NOW) )
                               );
 
-        parent::__construct();
     }
 
     public function countClients() {
-        return $this->count('Client');
+        $clientmodel = new Clients_Model();
+        return $clientmodel->count('Client');
     }
 
     public function getStoredBytes() {
-        $stored_bytes = $this->sum('Job', 'JobBytes');
+        $jobmodel     = new Jobs_Model();
+        $stored_bytes = $jobmodel->sum('Job', 'JobBytes');
         return  CUtils::Get_Human_Size($stored_bytes, 1);
     }
 
     public function getStoredFiles() {
-        $stored_files = $this->sum('Job', 'JobFiles');
+        $jobmodel     = new Jobs_Model();
+        $stored_files = $jobmodel->sum('Job', 'JobFiles');
         return  CUtils::format_Number($stored_files, 0);
     }
 
