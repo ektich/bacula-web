@@ -44,6 +44,11 @@
 
          // PHP Sqlite
          $this->assign('php_sqlite', $this->model->checkPhpSqlite() );
+
+         // PHP version
+         $this->assign('php_version', $this->model->checkPhpVersion() );
+         $this->assign('php_version_no', PHP_VERSION );
+      
      }
  }
 

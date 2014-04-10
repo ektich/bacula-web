@@ -66,6 +66,13 @@
             else
                 return 'remove';
         }
+
+        public function checkPhpVersion() {
+            if(version_compare(PHP_VERSION, '5.0.0', '>='))
+                return 'ok';
+            else
+                return 'remove';
+        }
     }
 
 

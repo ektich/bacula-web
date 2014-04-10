@@ -55,6 +55,12 @@
              <span class="glyphicon glyphicon-{$php_sqlite}"></span>
            </td>
          </tr>
+         <tr>
+           <td>PHP version (current {$php_version_no})</td>
+           <td class="text-center">
+             <span class="glyphicon glyphicon-{$php_version}"></span>
+           </td>
+         </tr>
        </table>
    </div>
 
