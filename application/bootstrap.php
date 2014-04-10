@@ -19,6 +19,7 @@
  require_once(getcwd() . "/core/app/classautoloader.class.php");
 
  $paths = array( 'application/models',
+                 'application/models/pages',
                  'application/controllers',
                  'application/views',
                  'application/modules',
