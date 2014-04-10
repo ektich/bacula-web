@@ -25,6 +25,12 @@
              <span class="glyphicon glyphicon-{$php_session}"></span>
            </td>
          </tr>
+         <tr>
+           <td>PHP GD</td>
+           <td class="text-center">
+             <span class="glyphicon glyphicon-{$php_session}"></span>
+           </td>
+         </tr>
        </table>
    </div>
 

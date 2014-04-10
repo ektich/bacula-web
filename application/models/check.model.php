@@ -31,6 +31,13 @@
             }else
                 return 'remove';
         }
+
+        public function checkPhpGd() {
+            if( function_exists('gd_info')) {
+                return 'ok';
+            }else
+                return 'remove';
+        }
     }
 
 

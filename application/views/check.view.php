@@ -29,6 +29,9 @@
  
          // PHP Session support
          $this->assign('php_session', $this->model->checkPhpSession() );
+
+         // PHP GD support
+         $this->assign('gd_info', $this->model->checkPhpGd() );
      }
  }
 
