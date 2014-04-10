@@ -17,7 +17,8 @@
   +-------------------------------------------------------------------------+
 */
 
-    class Check_Model extends Model {
+    class Check_Model {
+
         public function checkPhpGettext() {
             if(function_exists('gettext') )
                 return 'ok';
