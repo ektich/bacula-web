@@ -13,7 +13,7 @@ class BwApplication extends Application
 
             // Check template cache is writable by Apache
             if( !is_writable( VIEW_CACHE_DIR ) )
-                throw new Exception("The template cache folder <b>" . VIEW_CACHE_DIR . "</b> must be writable by Apache user");
+                die("The template cache folder <b>" . VIEW_CACHE_DIR . "</b> must be writable by Apache user");
 
             // Check if language have been defined in config file
             $this->language = FileConfig::get_Value( 'language' );
