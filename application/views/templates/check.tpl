@@ -61,6 +61,12 @@
              <span class="glyphicon glyphicon-{$php_version}"></span>
            </td>
          </tr>
+         <tr>
+           <td>PHP Timezone (current {$php_timezone_str})</td>
+           <td class="text-center">
+             <span class="glyphicon glyphicon-{$php_timezone}"></span>
+           </td>
+         </tr>
        </table>
    </div>
 

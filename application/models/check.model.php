@@ -73,6 +73,14 @@
             else
                 return 'remove';
         }
+
+        public function checkPhpTimezone() {
+            $timezone = ini_get('date.timezone');
+            if(!empty($timezone))
+                return 'ok';
+            else
+                return 'remove';
+        }
     }
 
 

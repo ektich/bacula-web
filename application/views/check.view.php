@@ -48,6 +48,10 @@
          // PHP version
          $this->assign('php_version', $this->model->checkPhpVersion() );
          $this->assign('php_version_no', PHP_VERSION );
+
+         // PHP Timezone
+         $this->assign('php_timezone_str', ini_get('date.timezone') );
+         $this->assign('php_timezone', $this->model->checkPhpTimezone() );
       
      }
  }
