@@ -45,6 +45,13 @@
             else
                 return 'remove';
         }
+
+        public function checkPhpMysql(){
+            if(function_exists('mysql_connect')) 
+                return 'ok';
+            else
+                return 'remove';
+        }
     }
 
 

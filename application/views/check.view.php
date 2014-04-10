@@ -35,6 +35,9 @@
 
          // PHP PDO support
          $this->assign('php_pdo', $this->model->checkPhpPdo() );
+
+         // PHP MySQL
+         $this->assign('php_mysql', $this->model->checkPhpMysql() );
      }
  }
 
