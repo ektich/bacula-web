@@ -19,23 +19,30 @@
 
     class Check_Model extends Model {
         public function checkPhpGettext() {
-            if( function_exists('gettext') )
+            if(function_exists('gettext') )
                 return 'ok';
             else
                 return 'remove';
         }
 
         public function checkPhpSession() {
-            if( function_exists('session_start')) {
+            if(function_exists('session_start')) 
                 return 'ok';
-            }else
+            else
                 return 'remove';
         }
 
         public function checkPhpGd() {
-            if( function_exists('gd_info')) {
+            if(function_exists('gd_info')) 
                 return 'ok';
-            }else
+            else
+                return 'remove';
+        }
+
+        public function checkPhpPdo(){
+            if(class_exists('PDO')) 
+                return 'ok';
+            else
                 return 'remove';
         }
     }

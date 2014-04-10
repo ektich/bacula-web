@@ -31,6 +31,12 @@
              <span class="glyphicon glyphicon-{$php_gd}"></span>
            </td>
          </tr>
+         <tr>
+           <td>PHP PDO</td>
+           <td class="text-center">
+             <span class="glyphicon glyphicon-{$php_pdo}"></span>
+           </td>
+         </tr>
        </table>
    </div>
 

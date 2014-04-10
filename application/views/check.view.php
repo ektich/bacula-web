@@ -32,6 +32,9 @@
 
          // PHP GD support
          $this->assign('php_gd', $this->model->checkPhpGd() );
+
+         // PHP PDO support
+         $this->assign('php_pdo', $this->model->checkPhpPdo() );
      }
  }
 
