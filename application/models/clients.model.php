@@ -15,17 +15,7 @@
   +-------------------------------------------------------------------------+
  */
 
- class Clients_Model extends Model {
-
-    // ==================================================================================
-	// Function: 	count()
-	// Parameters:	$pdo_connection - valide pdo object
-	// Return:		Number of clients
-	// ==================================================================================
-
-	static public function count($pdo) {
-		return CModel::count( $pdo, 'Client');	
-	}
+ class Clients_Model extends DatabaseModel {
 
     // ==================================================================================
 	// Function: 	getClients()
