@@ -43,7 +43,7 @@ Open a shell command prompt and move to Bacula-Web installation folder
 
 ::
    
-   $ mv /var/www/html/bacula-web
+   $ cd /var/www/html/bacula-web
 
    # On Debian/Ubuntu
    $ sudo -u www-data php bwc check
